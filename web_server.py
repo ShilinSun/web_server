@@ -1,7 +1,12 @@
+# coding=utf-8
 import BaseHTTPServer
 
 
+# 返回请求的信息
+
+
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+    # Page模板
     Page = '''\
    <html>
    <body>
@@ -14,6 +19,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
    <tr> <td>Path</td>               <td>{path}</td>
    '''
 
+    # 发送内容于客户端
     def send_content(self, page):
         self.send_response(200)
 
@@ -27,6 +33,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         page = self.create_page()
         self.send_content(page)
 
+    # 页面的创建
     def create_page(self):
         values = {
             'date_time':self.date_time_string(),
